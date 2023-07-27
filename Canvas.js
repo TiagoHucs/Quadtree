@@ -4,9 +4,9 @@ class Canvas {
         if(!this.canvas){
             this.canvas = document.createElement("canvas");
             document.body.appendChild(this.canvas);
-            this.canvas.width = window.innerWidth -30;
-            this.canvas.height = window.innerHeight -30;
-            this.canvas.style.border = "1px solid black";
+            this.canvas.width = window.innerWidth;
+            this.canvas.height = window.innerHeight;
+           // this.canvas.style.border = "1px solid black";
         
         }
         this.ctx = this.canvas.getContext("2d");
@@ -22,7 +22,7 @@ class Canvas {
     }
     rectangle(r, color){
         this.ctx.strokeStyle = color;
-        this.ctx.strokeRect(0,0,this.canvas.width,this.canvas.height);
+        this.ctx.strokeRect(r.x, r.y, r.w, r.h);
     }
 
     point(p,color,weight){
