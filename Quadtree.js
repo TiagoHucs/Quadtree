@@ -44,6 +44,24 @@ class Quadtree {
             new Rectangle(this.boundary.x + width, this.boundary.y + height, width, height));
 
     }
+
+    query(range){
+        let found = [];
+        if (this.boundary.intersects(range)){
+            this.points.forEach(p => {
+                if(range.contains(p)){
+                    found.push(p);
+                }
+            })
+            if(this.topleft){
+                found = found.concat(this.topleft.query(range));
+                found = found.concat(this.topright.query(range));
+                found = found.concat(this.bottomleft.query(range));
+                found = found.concat(this.bottomright.query(range));
+            }
+        }
+        return found;
+    }
     
     draw(canvas){
 
@@ -62,6 +80,7 @@ class Quadtree {
 }
 
 var ca = new Canvas();
+let points = [];
 
 function meuMouseClick(mp){
     console.log(mp);
@@ -69,17 +88,25 @@ function meuMouseClick(mp){
     ca.clear("black");
     qt.draw(ca);
     ca.rectangle(r,'green', 5);
+    //TODO: sair do força bruta
+    //let qtPoints = qt.query(r);
+    points.forEach(p => {
+        if(r.contains(p)){
+            ca.point(p,'red',5);
+        }
+    })
 }
 
 ca.onMouseClick = meuMouseClick;
 
-
 var rect = new Rectangle(0, 0, ca.canvas.width, ca.canvas.height);
 var qt = new Quadtree(4, rect);
-for (let i = 1; i < 300; i++) {
+for (let i = 1; i <= 1000; i++) {
     let x = Random.int(0, ca.canvas.width);
     let y = Random.int(0, ca.canvas.height);
-    qt.add(new Point(x, y))
+    let p = new Point(x, y)
+    points.push(p);
+    qt.add(p);
 }
 ca.clear("black");
 qt.draw(ca);
