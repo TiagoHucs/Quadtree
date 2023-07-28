@@ -62,6 +62,18 @@ class Quadtree {
 }
 
 var ca = new Canvas();
+
+function meuMouseClick(mp){
+    console.log(mp);
+    let r = new Rectangle(mp.x,mp.y,200,200);
+    ca.clear("black");
+    qt.draw(ca);
+    ca.rectangle(r,'green', 5);
+}
+
+ca.onMouseClick = meuMouseClick;
+
+
 var rect = new Rectangle(0, 0, ca.canvas.width, ca.canvas.height);
 var qt = new Quadtree(4, rect);
 for (let i = 1; i < 300; i++) {

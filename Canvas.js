@@ -10,6 +10,13 @@ class Canvas {
         
         }
         this.ctx = this.canvas.getContext("2d");
+        this.canvas.addEventListener('click', e => {
+            this.mouseclick(e);
+        })
+    }
+    mouseclick(e){
+        this.mousepos = new Point(e.layerX,e.layerY);
+        if(this.onMouseClick) this.onMouseClick(this.mousepos);
     }
 
     clear(color){
@@ -20,7 +27,8 @@ class Canvas {
             this.ctx.fillRect(0,0,this.canvas.width,this.canvas.height);
         }
     }
-    rectangle(r, color){
+    rectangle(r, color, weight){
+        this.ctx.lineWidth = weight || 1;
         this.ctx.strokeStyle = color;
         this.ctx.strokeRect(r.x, r.y, r.w, r.h);
     }
