@@ -79,8 +79,17 @@ class Quadtree {
     }
 }
 
+//criando canvas
 var ca = new Canvas();
+
+//criando pontos
 let points = [];
+for (let i = 1; i <= 1000; i++) {
+    let x = Random.int(0, ca.canvas.width);
+    let y = Random.int(0, ca.canvas.height);
+    let p = new Point(x, y)
+    points.push(p);
+}
 
 function meuMouseClick(mp){
     console.log(mp);
@@ -100,13 +109,45 @@ function meuMouseClick(mp){
 ca.onMouseClick = meuMouseClick;
 
 var rect = new Rectangle(0, 0, ca.canvas.width, ca.canvas.height);
-var qt = new Quadtree(4, rect);
-for (let i = 1; i <= 2000; i++) {
-    let x = Random.int(0, ca.canvas.width);
-    let y = Random.int(0, ca.canvas.height);
-    let p = new Point(x, y)
-    points.push(p);
-    qt.add(p);
+var distance = 40;
+
+
+
+var qt;
+
+function update() {
+    qt = new Quadtree(4, rect);
+    points.forEach(p => {
+        p.x += Random.number(-2,2);
+        p.y += Random.number(-2,2);
+        qt.add(p);
+    });
 }
-ca.clear("black");
-qt.draw(ca);
+
+function render(){
+    ca.clear("black");
+    qt.draw(ca);        
+    for (var i = 0; i < points.length; i++) {
+        let a = points[i];
+        for (var c = i + 1; c < points.length; c++) {
+            let b = points[c];
+
+            let x = a.x - b.x;
+            let y = a.y - b.y;
+            let h = Math.hypot(x,y);
+
+            if(h <= distance){
+                ca.line(a.x , a.y , b.x , b.y, "rgb(0,255,0)");
+            }
+
+        }
+    }
+}
+
+function execute(){
+    update();
+    render();
+    requestAnimationFrame(execute);
+}
+
+requestAnimationFrame(execute);

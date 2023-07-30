@@ -6,8 +6,6 @@ class Canvas {
             document.body.appendChild(this.canvas);
             this.canvas.width = window.innerWidth;
             this.canvas.height = window.innerHeight;
-           // this.canvas.style.border = "1px solid black";
-        
         }
         this.ctx = this.canvas.getContext("2d");
         this.canvas.addEventListener('click', e => {
@@ -44,5 +42,13 @@ class Canvas {
             y -= m;
         }
         this.ctx.fillRect(x,y,w,w);
+    }
+
+    line(x1,y1,x2,y2,color){
+        this.ctx.strokeStyle = color;
+        this.ctx.beginPath();
+        this.ctx.moveTo(x1,y1);
+        this.ctx.lineTo(x2,y2);
+        this.ctx.stroke();
     }
 }
