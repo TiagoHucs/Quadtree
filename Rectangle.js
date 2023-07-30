@@ -6,11 +6,15 @@ class Rectangle {
         this.h = height;
     }
 
-    intersects(r){
-        return this.contains(new Point(r.x, r.y)) ||
-        this.contains(new Point(r.x, r.y + h)) ||
-        this.contains(new Point(r.x + r.w, r.y)) ||
-        this.contains(new Point(r.x + r.w, r.y + h));
+    intersects(rect){
+        return Rectangle.intersects(this,rect) || Rectangle.intersects(rect,this)
+    }
+
+    static intersects(rectA,rectB){
+        return rectA.contains(new Point(rectB.x, rectB.y)) ||
+        rectA.contains(new Point(rectB.x, rectB.y + rectB.h)) ||
+        rectA.contains(new Point(rectB.x + rectB.w, rectB.y)) ||
+        rectA.contains(new Point(rectB.x + rectB.w, rectB.y + rectB.h));
     }
 
     contains(p){

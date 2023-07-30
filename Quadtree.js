@@ -88,20 +88,20 @@ function meuMouseClick(mp){
     ca.clear("black");
     qt.draw(ca);
     ca.rectangle(r,'green', 5);
-    //TODO: sair do força bruta
-    //let qtPoints = qt.query(r);
-    points.forEach(p => {
+    let qtPoints = qt.query(r);
+    qtPoints.forEach(p => {
         if(r.contains(p)){
             ca.point(p,'red',5);
         }
     })
+
 }
 
 ca.onMouseClick = meuMouseClick;
 
 var rect = new Rectangle(0, 0, ca.canvas.width, ca.canvas.height);
 var qt = new Quadtree(4, rect);
-for (let i = 1; i <= 1000; i++) {
+for (let i = 1; i <= 10000; i++) {
     let x = Random.int(0, ca.canvas.width);
     let y = Random.int(0, ca.canvas.height);
     let p = new Point(x, y)
