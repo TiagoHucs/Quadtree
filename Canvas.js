@@ -25,15 +25,21 @@ class Canvas {
             this.ctx.fillRect(0,0,this.canvas.width,this.canvas.height);
         }
     }
-    rectangle(r, color, weight){
-        this.ctx.lineWidth = weight || 1;
-        this.ctx.strokeStyle = color;
+    rectangle(r){
+        this.ctx.lineWidth = r.weight || 1;
+        this.ctx.strokeStyle = r.color;
         this.ctx.strokeRect(r.x, r.y, r.w, r.h);
+
+        var fontSize = 10;
+        this.ctx.font = fontSize + 'px Arial';
+        this.ctx.fillStyle = 'red';
+        this.ctx.fillText("retangulo", r.x, r.y + fontSize);
+        this.ctx.fillText("pontos", r.x, r.y + (fontSize * 2));
     }
 
-    point(p,color,weight){
-        this.ctx.fillStyle = color;
-        let w = weight || 1;
+    point(p){
+        this.ctx.fillStyle = p.color || 'white';
+        let w = p.weight || 1;
         let x = p.x;
         let y = p.y;
         if(w > 1){

@@ -1,9 +1,11 @@
 class Rectangle {
-    constructor(x,y,width,height){
+    constructor(x,y,width,height,weight, color){
         this.x = x;
         this.y = y;
         this.w = width;
         this.h = height;
+        this.color = color || 'rgb(050,050,050)';
+        this.weight = weight || 1; 
     }
 
     intersects(rect){
