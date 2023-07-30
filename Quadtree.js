@@ -101,7 +101,7 @@ ca.onMouseClick = meuMouseClick;
 
 var rect = new Rectangle(0, 0, ca.canvas.width, ca.canvas.height);
 var qt = new Quadtree(4, rect);
-for (let i = 1; i <= 10000; i++) {
+for (let i = 1; i <= 2000; i++) {
     let x = Random.int(0, ca.canvas.width);
     let y = Random.int(0, ca.canvas.height);
     let p = new Point(x, y)

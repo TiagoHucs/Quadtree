@@ -7,14 +7,21 @@ class Rectangle {
     }
 
     intersects(rect){
-        return Rectangle.intersects(this,rect) || Rectangle.intersects(rect,this)
+        return Rectangle.intersects(this,rect);
     }
 
     static intersects(rectA,rectB){
-        return rectA.contains(new Point(rectB.x, rectB.y)) ||
-        rectA.contains(new Point(rectB.x, rectB.y + rectB.h)) ||
-        rectA.contains(new Point(rectB.x + rectB.w, rectB.y)) ||
-        rectA.contains(new Point(rectB.x + rectB.w, rectB.y + rectB.h));
+
+        let centerA = new Point(rectA.x + rectA.w / 2, rectA.y + rectA.h / 2);
+        let centerB = new Point(rectB.x + rectB.w / 2, rectB.y + rectB.h / 2);
+
+        let diffX = Math.abs(centerA.x - centerB.x);
+        let diffY = Math.abs(centerA.y - centerA.y);
+
+        let dx = rectA.w / 2 + rectB.w / 2;
+        let dy = rectA.h / 2 + rectB.h / 2;
+
+        return (diffX <= dx && diffY <= dy);
     }
 
     contains(p){
