@@ -29,12 +29,6 @@ class Canvas {
         this.ctx.lineWidth = r.weight || 1;
         this.ctx.strokeStyle = r.color;
         this.ctx.strokeRect(r.x, r.y, r.w, r.h);
-
-        var fontSize = 10;
-        this.ctx.font = fontSize + 'px Arial';
-        this.ctx.fillStyle = 'red';
-        this.ctx.fillText("retangulo", r.x, r.y + fontSize);
-        this.ctx.fillText("pontos", r.x, r.y + (fontSize * 2));
     }
 
     point(p){
