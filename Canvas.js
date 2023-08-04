@@ -29,12 +29,6 @@ class Canvas {
         this.ctx.lineWidth = r.weight || 1;
         this.ctx.strokeStyle = r.color;
         this.ctx.strokeRect(r.x, r.y, r.w, r.h);
-
-        var fontSize = 10;
-        this.ctx.font = fontSize + 'px Arial';
-        this.ctx.fillStyle = 'red';
-        this.ctx.fillText("retangulo", r.x, r.y + fontSize);
-        this.ctx.fillText("pontos", r.x, r.y + (fontSize * 2));
     }
 
     point(p){
@@ -48,6 +42,7 @@ class Canvas {
             y -= m;
         }
         this.ctx.fillRect(x,y,w,w);
+        this.circle(p);
     }
 
     line(x1,y1,x2,y2,color){
@@ -55,6 +50,13 @@ class Canvas {
         this.ctx.beginPath();
         this.ctx.moveTo(x1,y1);
         this.ctx.lineTo(x2,y2);
+        this.ctx.stroke();
+    }
+
+    circle(p){
+        this.ctx.strokeStyle = p.color;
+        this.ctx.beginPath();
+        this.ctx.arc(p.x, p.y, 12, 0, 2 * Math.PI);
         this.ctx.stroke();
     }
 }

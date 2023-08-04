@@ -28,5 +28,12 @@ class Random {
         return Math.floor(Math.random() * (max - min)) + min
     }
 
+    static bool(){
+      // Gera um número aleatório entre 0 e 1
+      var randomNumber = Math.random();
+      // Decide se o valor é true ou false com base no número gerado
+      return randomNumber < 0.5;
+    }
+
 
 }
