@@ -3,7 +3,7 @@ var ca = new Canvas();
 
 //criando pontos
 let points = [];
-for (let i = 1; i <= 50; i++) {
+for (let i = 1; i <= 200; i++) {
     let x = Random.int(0, ca.canvas.width);
     let y = Random.int(0, ca.canvas.height);
     let p = new Point(x, y, 1);
